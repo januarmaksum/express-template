@@ -21,6 +21,14 @@ app.get('/', (_req, res) => {
     });
 });
 
+// 404 handler
+app.use((_req, res) => {
+    res.status(404).json({
+      success: false,
+      message: 'Route not found',
+    });
+});
+
 app.listen(port, () => {
   console.log(`Server ready at http://localhost:${port}`);
 });
