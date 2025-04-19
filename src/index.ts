@@ -14,19 +14,19 @@ app.use('/api', apiRoutes);
 
 // Root handler
 app.get('/', (_req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Welcome to My API',
-        docs: '/api/docs',
-    });
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to My API',
+    docs: '/api/docs',
+  });
 });
 
 // 404 handler
 app.use((_req, res) => {
-    res.status(404).json({
-      success: false,
-      message: 'Route not found',
-    });
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+  });
 });
 
 app.listen(port, () => {

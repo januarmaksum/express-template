@@ -21,7 +21,6 @@ build/
 public/
 
 # IDEs and Editors
-.vscode/
 .idea/
 *.sublime-workspace
 *.sublime-project

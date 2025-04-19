@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "inlineSourceMap": true,
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "noEmitOnError": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
