@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', apiRoutes);
 
 app.get('/', (_req, res) => {
-  res.send('Hello from base route!');
+    res.json({ success: true, message: 'Welcome to Express API on Vercel!' });
 });
 
 app.listen(port, () => {
