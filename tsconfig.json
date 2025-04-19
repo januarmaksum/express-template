@@ -13,5 +13,7 @@
     "inlineSourceMap": true,
     "allowJs": true,
     "checkJs": true
-  }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
