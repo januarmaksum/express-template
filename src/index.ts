@@ -12,8 +12,13 @@ app.use(express.urlencoded({ extended: true }));
 // Prefix /api
 app.use('/api', apiRoutes);
 
+// Root handler
 app.get('/', (_req, res) => {
-    res.json({ success: true, message: 'Welcome to Express API on Vercel!' });
+    res.status(200).json({
+        success: true,
+        message: 'Welcome to My API',
+        docs: '/api/docs',
+    });
 });
 
 app.listen(port, () => {
