@@ -1,8 +1,13 @@
-import express from 'express';
+import express, { Application } from 'express';
 import apiRoutes from './routes';
 
-const app = express();
 const port = process.env.PORT || 3000;
+
+const app: Application = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Prefix /api
 app.use('/api', apiRoutes);
