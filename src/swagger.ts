@@ -2,11 +2,6 @@ import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
 import fs from 'fs';
 import path from 'path';
-// import env from './configs/env.config';
-
-// const isProduction = process.env.NODE_ENV;
-// const publicApiServer =
-//   isProduction === 'production' ? env.API_URL : `http://localhost:${env.PORT}`;
 
 // Load Swagger JSON spec file
 const swaggerSpec = JSON.parse(
@@ -20,6 +15,9 @@ export const setupSwagger = (app: Express) => {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-bundle.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-standalone-preset.min.js',
     ],
+    customfavIcon:
+      'https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png',
+    customSiteTitle: 'API - Express Template',
   };
 
   app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));

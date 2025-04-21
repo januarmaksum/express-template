@@ -1,5 +1,28 @@
 {
   "openapi": "3.0.0",
+  "info": {
+    "title": "API Docs",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Januar Maksum",
+      "url": "https://github.com/januarmaksum",
+      "email": "januarmaksum@gmail.com"
+    },
+    "license": {
+      "name": "Licence - MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Users",
+      "description": "User related endpoints"
+    }
+  ],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://express-template-plum.vercel.app" }
+  ],
   "components": {
     "schemas": {
       "User": {

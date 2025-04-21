@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import apiRoutes from './routes';
 import env from './configs/env.config';
 import { setupSwagger } from './swagger';
@@ -8,6 +9,14 @@ const PORT = env.PORT;
 
 // Create express app
 const app = express();
+
+// Enable CORS
+app.use(
+  cors({
+    origin: [`http://localhost:${env.PORT}`, String(env.API_URL)],
+    credentials: true,
+  })
+);
 
 // Middleware
 app.use(express.json());
