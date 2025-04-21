@@ -8,20 +8,14 @@
   ],
   "routes": [
     {
-      "src": "/api/docs(?:/.*)?",
+      "src": "/api/docs",
+      "methods": ["GET"],
       "dest": "/src/index.ts"
     },
     {
-      "src": "/swagger-ui.css",
-      "dest": "src/index.js"
-    },
-    {
-      "src": "/swagger-ui-bundle.js",
-      "dest": "src/index.js"
-    },
-    {
-      "src": "/swagger-ui-standalone-preset.js",
-      "dest": "src/index.js"
+      "src": "/api/docs/(.*)",
+      "methods": ["GET"],
+      "dest": "/src/index.ts"
     },
     {
       "src": "/(.*)",
