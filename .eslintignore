@@ -1,3 +1,4 @@
 node_modules
 dist
 public/swagger-custom.js
+src/docs/swagger-custom.js
