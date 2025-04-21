@@ -14,6 +14,10 @@
     {
       "src": "/api/docs/*",
       "dest": "/api/docs"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/src/index.ts"
     }
   ]
 }
