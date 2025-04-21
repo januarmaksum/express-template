@@ -37,13 +37,14 @@ const options: swaggerJSDoc.Options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 export const setupSwagger = (app: Express) => {
-  // app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
   app.use(
     '/api/docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, {
       explorer: true,
+      customSiteTitle: 'My API Docs',
+      customfavIcon: '/api/docs/favicon-32x32.png',
+      customCss: '.swagger-ui .topbar { display: none }',
     })
   );
 };
