@@ -11,10 +11,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "inlineSourceMap": true,
-    "allowJs": true,
-    "checkJs": true,
     "noEmitOnError": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "src/docs/*.yaml"],
+  "exclude": ["node_modules"]
 }
