@@ -1,0 +1,42 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the user
+          example: '1'
+        username:
+          type: string
+          description: The username of the user
+          example: 'john_doe'
+        displayName:
+          type: string
+          description: The name of the user
+          example: 'John Doe'
+
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      description: Get all users from the database
+      tags: [Users]
+      responses:
+        200:
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        404:
+          description: Users not found

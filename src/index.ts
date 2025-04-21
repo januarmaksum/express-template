@@ -1,13 +1,13 @@
-import express, { Application } from 'express';
+import express from 'express';
 import apiRoutes from './routes';
-import dotenv from 'dotenv';
+import env from './configs/env.config';
+import { setupSwagger } from './swagger';
 
 // Load environment variables
-dotenv.config();
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = env.PORT;
 
 // Create express app
-const app: Application = express();
+const app = express();
 
 // Middleware
 app.use(express.json());
@@ -16,12 +16,17 @@ app.use(express.urlencoded({ extended: true }));
 // Prefix /api
 app.use('/api', apiRoutes);
 
+// API docs
+setupSwagger(app);
+
 // Root handler
 app.get('/', (_req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Welcome to My API',
+    message: 'Visit /api/docs for swagger documentation.',
     docs: '/api/docs',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
   });
 });
 
