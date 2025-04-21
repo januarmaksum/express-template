@@ -8,16 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/(.*)\\.(js|css|yaml|png|jpg|jpeg|gif|svg|ico|json|txt)",
-      "dest": "/public/$1.$2"
+      "src": "/api/docs",
+      "dest": "server.js"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/src/index.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/src/index.ts"
+      "src": "/api/docs/*",
+      "dest": "/api/docs"
     }
   ]
 }
