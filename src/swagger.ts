@@ -43,10 +43,9 @@ const swaggerSpec = swaggerJSDoc(options);
 export const setupSwagger = (app: Express) => {
   app.use(
     '/api/docs',
-    swaggerUi.serveFiles(swaggerSpec, {}),
+    swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, {
-      explorer: true,
-      customSiteTitle: 'My API Docs',
+      customJs: '/swagger-custom.js',
     })
   );
 };
