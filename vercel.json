@@ -8,12 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/api/docs(?:/.*)?",
-      "dest": "/src/index.ts"
+      "src": "/api/docs(.*)",
+      "dest": "dist/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/src/index.ts"
+      "dest": "dist/index.js"
     }
   ]
 }
