@@ -32,8 +32,10 @@ paths:
                 properties:
                   status:
                     type: string
+                    example: success
                   message:
                     type: string
+                    example: List of users retrieved successfully
                   data:
                     type: array
                     items:

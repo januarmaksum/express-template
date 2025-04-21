@@ -33,10 +33,7 @@ app.get('/', (_req, res) => {
 // Error handler
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err.stack);
-  res.status(500).json({
-    success: false,
-    message: 'Internal Server Error',
-  });
+  res.status(500).json({ error: err.message });
 });
 
 // 404 handler
