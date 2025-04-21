@@ -1,12 +1,49 @@
+import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
+import envConfig from './configs/env.config';
 import fs from 'fs';
 import path from 'path';
 
-// Load Swagger JSON spec file
-const swaggerSpec = JSON.parse(
-  fs.readFileSync(path.join(__dirname, 'docs', 'swagger.json'), 'utf8')
-);
+const isProduction = envConfig.NODE_ENV;
+const publicApiServer =
+  isProduction === 'production' ? envConfig.API_URL : `http://localhost:${envConfig.PORT}`;
+
+const DOCS_DIR = path.join(__dirname, 'docs');
+
+// 🟡 Dynamically collect all .yaml files
+const yamlFiles = fs
+  .readdirSync(DOCS_DIR)
+  .filter((file) => file.endsWith('.yaml'))
+  .map((file) => path.join(DOCS_DIR, file).replace(/\\/g, '/'));
+
+const options: swaggerJSDoc.Options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'API Docs',
+      version: '1.0.0',
+      contact: {
+        name: 'Januar Maksum',
+        url: 'https://github.com/januarmaksum',
+        email: 'januarmaksum@gmail.com',
+      },
+      license: {
+        name: 'Licence - MIT',
+        url: 'https://opensource.org/licenses/MIT',
+      },
+    },
+    servers: [
+      {
+        url: publicApiServer,
+      },
+    ],
+    tags: [{ name: 'Users', description: 'User-related endpoints' }],
+  },
+  apis: yamlFiles, // ✅ Injected YAML files
+};
+
+const swaggerSpec = swaggerJSDoc(options);
 
 export const setupSwagger = (app: Express) => {
   const uiOptions = {
