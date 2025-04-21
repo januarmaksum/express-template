@@ -13,6 +13,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// di src/index.ts
+app.use(express.static('public'));
+
 // Prefix /api
 app.use('/api', apiRoutes);
 
