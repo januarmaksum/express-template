@@ -1,7 +1,6 @@
-import path from 'path';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import express, { Express } from 'express';
+import { Express } from 'express';
 import env from './configs/env.config';
 
 const isProduction = process.env.NODE_ENV;
@@ -41,21 +40,6 @@ const options: swaggerJSDoc.Options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-// const swaggerDocument = require('./swagger.json');
-
-const ROOT_FOLDER = path.join(__dirname, '..');
-const SRC_FOLDER = path.join(ROOT_FOLDER, 'src');
-
 export const setupSwagger = (app: Express) => {
-  // app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  // const swaggerUi = require('swagger-ui-express');
-
-  const options = {
-    customCssUrl: '/public/swagger-ui.css',
-    customSiteTitle: 'The Words That I Know API - Swagger',
-  };
-
-  app.use('/public', express.static(path.join(SRC_FOLDER, 'public')));
-  app.use('/api/docs', swaggerUi.serve);
-  app.get('/api/docs', swaggerUi.setup(swaggerSpec, options));
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
