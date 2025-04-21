@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import apiRoutes from './routes';
-import env from './configs/env.config';
+import envConfig from './configs/env.config';
 import { setupSwagger } from './swagger';
 
 // Load environment variables
-const PORT = env.PORT;
+const PORT = envConfig.PORT;
 
 // Create express app
 const app = express();
@@ -13,7 +13,7 @@ const app = express();
 // Enable CORS
 app.use(
   cors({
-    origin: [`http://localhost:${env.PORT}`, String(env.API_URL)],
+    origin: [`${envConfig.API_URL}`, `http://localhost:${envConfig.PORT}`],
     credentials: true,
   })
 );
@@ -46,12 +46,12 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 });
 
 // 404 handler
-// app.use((_req, res) => {
-//   res.status(404).json({
-//     success: false,
-//     message: 'Route not found',
-//   });
-// });
+app.use((_req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server ready at http://localhost:${PORT}`);
