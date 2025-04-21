@@ -5,9 +5,7 @@ import env from './configs/env.config';
 
 const isProduction = process.env.NODE_ENV;
 const publicApiServer =
-  isProduction === 'production'
-    ? 'https://express-template-plum.vercel.app'
-    : `http://localhost:${env.PORT}`;
+  isProduction === 'production' ? env.API_URL : `http://localhost:${env.PORT}`;
 
 const options: swaggerJSDoc.Options = {
   definition: {
