@@ -19,6 +19,10 @@ app.use('/api', apiRoutes);
 // API docs
 setupSwagger(app);
 
+app.get('/api/docs', (_req, res) => {
+  res.redirect('/api/docs/');
+});
+
 // Root handler
 app.get('/', (_req, res) => {
   res.status(200).json({

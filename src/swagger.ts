@@ -3,6 +3,12 @@ import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
 import env from './configs/env.config';
 
+const isProduction = process.env.NODE_ENV;
+const publicApiServer =
+  isProduction === 'production'
+    ? 'https://express-template-plum.vercel.app'
+    : `http://localhost:${env.PORT}`;
+
 const options: swaggerJSDoc.Options = {
   definition: {
     openapi: '3.0.0',
@@ -27,7 +33,7 @@ const options: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: `http://localhost:${env.PORT}`,
+        url: publicApiServer,
       },
     ],
   },
@@ -39,12 +45,10 @@ const swaggerSpec = swaggerJSDoc(options);
 export const setupSwagger = (app: Express) => {
   app.use(
     '/api/docs',
-    swaggerUi.serve,
+    swaggerUi.serveFiles(swaggerSpec, {}),
     swaggerUi.setup(swaggerSpec, {
       explorer: true,
       customSiteTitle: 'My API Docs',
-      customfavIcon: '/api/docs/favicon-32x32.png',
-      customCss: '.swagger-ui .topbar { display: none }',
     })
   );
 };
