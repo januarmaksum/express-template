@@ -2,9 +2,11 @@ import express, { Application } from 'express';
 import apiRoutes from './routes';
 import dotenv from 'dotenv';
 
+// Load environment variables
 dotenv.config();
-const port = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
+// Create express app
 const app: Application = express();
 
 // Middleware
@@ -40,6 +42,23 @@ app.use((_req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server ready at http://localhost:${port}`);
+// Create HTTP server instance
+const server = app.listen(PORT, (error?: Error | null) => {
+  if (error) {
+    console.error(`Error starting server: ${error.message}`);
+    process.exit(1);
+  }
+  console.log(`🚀 Server ready at http://localhost:${PORT}`);
+});
+
+// Export server for external use (e.g., testing or graceful shutdown)
+export { app, server };
+
+// Graceful Shutdown
+process.on('SIGINT', () => {
+  console.log('Shutting down gracefully...');
+  server.close(() => {
+    console.log('Closed out remaining connections.');
+    process.exit(0);
+  });
 });
