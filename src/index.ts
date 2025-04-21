@@ -44,23 +44,6 @@ app.use((_req, res) => {
   });
 });
 
-// Create HTTP server instance
-const server = app.listen(PORT, (error?: Error | null) => {
-  if (error) {
-    console.error(`Error starting server: ${error.message}`);
-    process.exit(1);
-  }
-  console.log(`🚀 Server ready at http://localhost:${PORT}`);
-});
-
-// Export server for external use (e.g., testing or graceful shutdown)
-export { app, server };
-
-// Graceful Shutdown
-process.on('SIGINT', () => {
-  console.log('Shutting down gracefully...');
-  server.close(() => {
-    console.log('Closed out remaining connections.');
-    process.exit(0);
-  });
+app.listen(PORT, () => {
+  console.log(`Server ready at http://localhost:${PORT}`);
 });
