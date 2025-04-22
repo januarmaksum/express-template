@@ -11,11 +11,17 @@ const publicApiServer =
 
 const DOCS_DIR = path.join(__dirname, 'docs');
 
+if (!fs.existsSync(DOCS_DIR)) {
+  throw new Error(`❌ Missing Swagger docs folder: ${DOCS_DIR}`);
+}
+
 // 🟡 Dynamically collect all .yaml files
-const yamlFiles = fs
-  .readdirSync(DOCS_DIR)
-  .filter((file) => file.endsWith('.yaml'))
-  .map((file) => path.join(DOCS_DIR, file).replace(/\\/g, '/'));
+const yamlFiles = fs.existsSync(DOCS_DIR)
+  ? fs
+      .readdirSync(DOCS_DIR)
+      .filter((file) => file.endsWith('.yaml'))
+      .map((file) => path.join(DOCS_DIR, file).replace(/\\/g, '/'))
+  : [];
 
 const options: swaggerJSDoc.Options = {
   definition: {
@@ -40,20 +46,20 @@ const options: swaggerJSDoc.Options = {
     ],
     tags: [{ name: 'Users', description: 'User-related endpoints' }],
   },
-  apis: yamlFiles, // ✅ Injected YAML files
+  apis: yamlFiles,
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
 export const setupSwagger = (app: Express) => {
   const uiOptions = {
-    customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.min.css',
-    customJs: [
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-bundle.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-standalone-preset.min.js',
-    ],
-    customfavIcon:
-      'https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png',
+    // customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.min.css',
+    // customJs: [
+    //   'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-bundle.min.js',
+    //   'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-standalone-preset.min.js',
+    // ],
+    // customfavIcon:
+    //   'https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png',
     customSiteTitle: 'API - Express Template',
   };
 
