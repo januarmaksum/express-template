@@ -1,6 +1,13 @@
 {
   "name": "express-template",
   "version": "1.0.0",
+  "author": {
+    "name": "Januar Maksum",
+    "url": "https://github.com/januarmaksum",
+    "email": "januarmaksum@gmail.com"
+  },
+  "license": "ISC",
+  "description": "A modern Express.js + TypeScript boilerplate with Prettier, ESLint, and Swagger setup.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
@@ -10,14 +17,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
-  "keywords": [],
-  "author": {
-    "name": "Januar Maksum",
-    "url": "https://github.com/januarmaksum",
-    "email": "januarmaksum@gmail.com"
-  },
-  "license": "ISC",
-  "description": "A modern Express.js + TypeScript boilerplate with Prettier, ESLint, and Swagger setup.",
   "dependencies": {
     "@types/cors": "^2.8.17",
     "bcrypt": "^5.1.1",
