@@ -32,8 +32,8 @@ paths:
                 type: object
                 properties:
                   status:
-                    type: string
-                    example: success
+                    type: integer
+                    example: 200
                   message:
                     type: string
                     example: Success get users
@@ -49,8 +49,8 @@ paths:
                 type: object
                 properties:
                   status:
-                    type: string
-                    example: error
+                    type: integer
+                    example: 404
                   message:
                     type: string
                     example: Users not found
