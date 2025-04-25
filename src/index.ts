@@ -1,4 +1,5 @@
 import express from 'express';
+import serverless from 'serverless-http';
 import cors from 'cors';
 import apiRoutes from './routes';
 import envConfig from './configs/env.config';
@@ -53,6 +54,15 @@ app.use((_req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server ready at http://localhost:${PORT}`);
-});
+// Local dev only: run app.listen
+if (envConfig.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server ready at http://localhost:${PORT}`);
+  });
+}
+
+// Export as serverless handler for Vercel
+export const handler = serverless(app);
+
+// Also export the app (optional, if needed elsewhere)
+export default app;
