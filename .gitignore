@@ -3,6 +3,7 @@ node_modules/
 
 # Environment files
 .env
+.env.*
 
 # Logs
 logs/
@@ -15,19 +16,35 @@ yarn-error.log*
 tmp/
 temp/
 
-# Build directory (for if you’re using TypeScript or Babel)
+# Build and compiled output
 dist/
 build/
+*.tsbuildinfo
 
 # IDEs and Editors
 .idea/
+.vscode/*
+!.vscode/settings.json
 *.sublime-workspace
 *.sublime-project
 
-# Operating System files
+# OS generated files
 .DS_Store
 Thumbs.db
-.vercel
 
-package-lock.json
-yarn.lock
+# Deployment
+.vercel
+.npm/
+
+# Prisma
+prisma/.env
+prisma/migrations/
+
+# Swagger (if any generated cache)
+.swagger/
+
+# Lockfiles (choose one)
+# If using Yarn, don't ignore yarn.lock!
+# yarn.lock
+# If using npm:
+# package-lock.json
